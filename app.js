@@ -15,17 +15,32 @@ const inquirer = require ('inquirer');
      {
        type: 'input',
        name: 'name',
-       message: 'What is your name?'
+       message: 'What is your name? (Required)',
+       validate: nameInput => {
+         if (nameInput) {
+           return true;
+         } else {
+           console.log('Please enter your name!');
+           return false;
+         }
+       }
      },
      {
       type: 'input',
       name: 'name',
-      message: 'Enter your HitHub Username'
+      message: 'Enter your gitHub Username (Required)',
+      validate: githubInput => {
+        if (githubInput) {
+          return true;
+        } else {
+          console.log('Please enter your github username!')
+        }
+      }
     },
     { 
       type: 'input',
       name: 'about',
-      message: 'Provide some informatino about yourself:'
+      message: 'Provide some information about yourself:'
     }
    ])
  }
@@ -41,9 +56,28 @@ const inquirer = require ('inquirer');
    `);
    return inquirer.prompt([
       {
+        type: 'input',
+        name: 'name',
+        message:  'What is the name of your project? (Required)',
+        validate: projectName => {
+          if (projectName){
+            return true;
+          } else {
+            console.log('Please provide the name of your project!')
+          }
+        }
+      },  
+      {
        type: 'input',
        name: 'name',
-       message:  'Provide a description of the project (Required)'
+       message:  'Provide a description of the project (Required)',
+       validate: projectInput => {
+         if (projectInput){
+           return true;
+         } else {
+           console.log('Please provide a description of the project!')
+         }
+       }
       },
       {
         type: 'checkbox',
@@ -54,7 +88,14 @@ const inquirer = require ('inquirer');
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)'
+        message: 'Enter the GitHub link to your project. (Required)',
+        validate: githubInput => {
+          if (githubInput) {
+            return true;
+          } else {
+            console.log('Please enter the link to your project!')
+          }
+        }
       },
       {
         type: 'confirm',
